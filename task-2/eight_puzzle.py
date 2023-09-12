@@ -1,6 +1,5 @@
 import copy
 
-
 def initial_state():
     return ((7, 2, 4, 5, 0, 6, 8, 3, 1), 1, 1)
 
@@ -51,4 +50,12 @@ def h1(s):
 def h3(s):
     # implement this function
     board, _, _ = s
-    return 0
+    goal = (1, 2, 3, 4, 5, 6, 7, 8, 0)
+    res = 0
+    for idx in range(9):
+        if board[idx] not in goal:
+            goal_row, goal_col = divmod(goal[idx] , 3)
+            cur_row, cur_col = divmod(board[idx] , 3)
+            res += abs(goal_row - cur_row)+ abs(goal_col - cur_col)
+    return res
+
